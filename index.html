@@ -5,36 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width= , initial-scale=1.0">
     <title>TicTacToe</title >
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="main ">
-      <div id="head">
-        <h1>TicTacToe</h1>
+  <div class="game-container">
+    <h1>Tic-Tac-Toe</h1>
+    <div class="board" id="board">
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+    </div>
+    <div class="status" id="status">Player X's turn</div>
+    <button class="reset-btn" id="reset">Reset Game</button>
+  </div>
+
+  <!-- Modal Pop-up for Win or Draw -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalMessage">Player X Wins!</h2>
+      <span id="emoji" class="emoji">🎉</span>
+      <!-- Emoji Display -->
+      <p id="modalQuote" class="quote-text"></p>
+      <!-- Short Quote Display -->
+      <div class="button-container">
+        <button class="replay-btn" id="replay">Replay</button>
+        <button class="exit-btn" id="exit">Exit</button>
       </div>
-      <div class="container">
-      <div id="content">
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-
-      </div>
-      <button class="resetbtn">Reset Game</button>
     </div>
-   
+  </div>
 
-    </div>
-    <div class="page2 page2Hide">
-      
-      
-    </div>
-
- <script src="script.js"></script>   
 </body>
+
+<script src="js/script.js"></script>
 </html>
