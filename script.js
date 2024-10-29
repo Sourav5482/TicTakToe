@@ -53,41 +53,55 @@ boxes.forEach(box => {
     
 });
 
-const checkWinner = ()=>{
-for (let pattern of winPattern){
-//147
- let pos1=pattern[0];//pos1=1;  
- let pos2=pattern[1]; //pos2=4;
- let pos3=pattern[2];//pos3=7;
-//  console.log(pos1,pos2,pos3);
-let pos1Val= boxes[pattern[0]].textContent;
-let pos2Val= boxes[pattern[1]].textContent;
-let pos3Val= boxes[pattern[2]].textContent;
-if(pos1Val !="" && pos2Val !="" && pos3Val !=""){
-   if(pos1Val=== pos2Val && pos2Val===pos3Val){
-    
-    page2.classList.remove("page2Hide")
-    main.classList.add("mainHide")
-    i= Math.floor(Math.random()*quete.length);
-   page2.innerHTML=`<h1> Congratulation! User "<b> ${pos1Val} </b>" Win</h1>
-   <h4>${quete[i]}</h4> <button id="playbtn">New Game</button>`//how to  changing the quete[i]
-//    i = (i + 1) % quete.length;
-let playbtn = document.getElementById("playbtn");
+const checkWinner = () => {
+    for (let pattern of winPattern) {
+        let pos1Val = boxes[pattern[0]].textContent;
+        let pos2Val = boxes[pattern[1]].textContent;
+        let pos3Val = boxes[pattern[2]].textContent;
 
-   playbtn.addEventListener('click',()=>{
-    main.classList.remove("mainHide")
-    boxes.forEach(box => {
-        box.textContent = ""; // Clear content
-        box.disabled = false; // Re-enable the box
-    });
-    userX = true; // Reset turn to "X
+        if (pos1Val !== "" && pos2Val !== "" && pos3Val !== "") {
+            if (pos1Val === pos2Val && pos2Val === pos3Val) {
+                // Winning logic
+                page2.classList.remove("page2Hide");
+                main.classList.add("mainHide");
+                i = Math.floor(Math.random() * quete.length);
+                page2.innerHTML = `<h1> Congratulation! User "<b> ${pos1Val} </b>" Win</h1>
+                <h4>${quete[i]}</h4> <button id="playbtn">New Game</button>`;
+                
+                // New Game button logic
+                let playbtn = document.getElementById("playbtn");
+                playbtn.addEventListener('click', () => {
+                    main.classList.remove("mainHide");
+                    boxes.forEach(box => {
+                        box.textContent = ""; // Clear content
+                        box.disabled = false; // Re-enable the box
+                    });
+                    userX = true; // Reset turn to "X"
+                    page2.classList.add("page2Hide");
+                });
+                return; // Exit the function after a win is found
+            }
+        }
+    }
 
-page2.classList.add("page2Hide")
-   })
-  } 
-}
-
-}
-
-}
+    // Check for draw condition
+    if ([...boxes].every(box => box.textContent !== "")) {
+        page2.classList.remove("page2Hide");
+        main.classList.add("mainHide");
+        page2.innerHTML = `<h1>It's a Draw!</h1>
+        <h4>Try Again!</h4> <button id="playbtn">New Game</button>`;
+        
+        // New Game button logic
+        let playbtn = document.getElementById("playbtn");
+        playbtn.addEventListener('click', () => {
+            main.classList.remove("mainHide");
+            boxes.forEach(box => {
+                box.textContent = ""; // Clear content
+                box.disabled = false; // Re-enable the box
+            });
+            userX = true; // Reset turn to "X"
+            page2.classList.add("page2Hide");
+        });
+    }
+};
 
